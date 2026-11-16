@@ -1,5 +1,8 @@
 require('dotenv').config();
 
+console.log('Client ID loaded:', !!process.env.GITHUB_CLIENT_ID);
+console.log('Callback URL loaded:', !!process.env.GITHUB_CALLBACK_URL);
+
 const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
