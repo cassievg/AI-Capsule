@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+console.log('Dotenv result:', dotenvResult.error || 'Loaded successfully');
 console.log('Client ID loaded:', !!process.env.GITHUB_CLIENT_ID);
 console.log('Callback URL loaded:', !!process.env.GITHUB_CALLBACK_URL);
 
