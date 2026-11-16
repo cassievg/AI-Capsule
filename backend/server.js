@@ -1,4 +1,4 @@
-require('dotenv').config();
+const dotenvResult = require('dotenv').config();
 
 console.log('Dotenv result:', dotenvResult.error || 'Loaded successfully');
 console.log('Client ID loaded:', !!process.env.GITHUB_CLIENT_ID);
