@@ -1,9 +1,9 @@
 const sqlite3 = require('sqlite3');
 
-const db = new sqlite3.Database('./ai-capsule.db');
+const db = new sqlite3.Database('./capsule.db');
 
 const dbCreate = () => {
-    return new Primise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         db.run(
             `CREATE TABLE IF NOT EXISTS capsules (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,

@@ -4,9 +4,37 @@ const express = require('express');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken');
+const { dbCreate } = require('./db');
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+
+const authToken = (req, res, next) => {
+    const token = req.cookies.token;
+
+    if (!token) {
+        return res.status(401).json({
+            success: false,
+            message: 'Unauthorized token'
+        })
+    };
+
+    try {
+        const decode = jwt.verify(token, process.env.JWT_SECRET);
+
+        req.user = {
+            userId: decode.userId,
+            username: decode.username
+        };
+
+        next();
+    } catch (e) {
+        return res.status(401).json({
+            success: false,
+            message: 'Invalid or expired token'
+        })
+    }
+};
 
 app.use(cors({
     origin: 'https://ai-capsule-w0vs.onrender.com',
@@ -14,20 +42,6 @@ app.use(cors({
 }));
 app.use(express.json());
 app.use(cookieParser());
-
-app.get('/', (req, res) => {
-  res.json({
-    success: true,
-    message: "backend running"
-  });
-});
-
-app.get('/api/test', (req, res) => {
-  res.json({
-    success: true,
-    message: "test success"
-  });
-});
 
 app.get('/auth/github', (req, res) => {
     const state = crypto.randomBytes(32).toString('hex');
@@ -124,13 +138,52 @@ app.get('/auth/github/callback', async (req, res) => {
             username: userData.login
         });
 
-        res.send(userData.login);
+        const appToken = jwt.sign(
+            {
+                userId: userData.id,
+                username: userData.login
+            },
+            process.env.JWT_SECRET,
+            {
+                expiresIn: '1h'
+            }
+        );
+
+        res.cookie('token', appToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'lax',
+            maxAge: 60 * 60 * 1000,
+            path: '/'
+        });
+
+        res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
     } catch (e) {
         console.error('oAuth error:', e);
         res.status(500).send('Authentication failed');
     }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.get('/api/health', async (req, res) => {
+    res.json({
+        status: 'ok'
+    });
 });
+
+const run = async () => {
+    try {
+        await dbCreate();
+
+        const PORT = process.env.PORT || 5000;
+
+        app.listen(PORT, () => {
+            console.log(`Server running on port ${PORT}`);
+        });
+    } catch (e) {
+        console.error('DB init failed:', e);
+    };
+};
+
+run();
+
+module.exports = { authToken };
