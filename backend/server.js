@@ -13,10 +13,7 @@ const authToken = (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-        return res.status(401).json({
-            success: false,
-            message: 'Unauthorized token'
-        })
+        return res.status(401).json({ message: 'Unauthorized token' });
     };
 
     try {
@@ -29,10 +26,7 @@ const authToken = (req, res, next) => {
 
         next();
     } catch (e) {
-        return res.status(401).json({
-            success: false,
-            message: 'Invalid or expired token'
-        })
+        return res.status(401).json({ message: 'Invalid or expired token' });
     }
 };
 
@@ -168,6 +162,10 @@ app.get('/api/health', async (req, res) => {
     res.json({
         status: 'ok'
     });
+});
+
+app.get('/dasboard', async (req, res) => {
+
 });
 
 const run = async () => {
