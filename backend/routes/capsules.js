@@ -1,9 +1,10 @@
 const express = require('express');
-const { db } = require('../db');
-const router = express.Router();
-const { authToken } = require('../server.js');
+const capsuleRouter = express.Router();
 
-router.get('/', authToken, (req, res) => {
+const { db } = require('../db');
+const { authToken } = require('../middleware/auth');
+
+capsuleRouter.get('/', authToken, (req, res) => {
     req.userId = String(req.user.userId);
 
     db.all(
@@ -15,16 +16,32 @@ router.get('/', authToken, (req, res) => {
                 return res.status(500).json({ error: 'Internal server error' });
             };
 
+            res.json(rows);
+        }
+    );
+});
+
+capsuleRouter.get('/:id', (req, res) => {
+    const { id } = req.params;
+
+    db.get(
+        `SELECT * from capsules WHERE id = ?`,
+        [id],
+        (err, rows) => {
+            if (err) {
+                return res.status(500).json({ error: 'Internal server error.' });
+            }
+
             if (!rows) {
-                return res.status(404).json({ error: 'User not found' });
-            };
+                return res.status(404).json({ error: 'Capsule not found.' });
+            }
 
             res.json(rows);
         }
     );
 });
 
-router.post('/', authToken, (req, res) => {
+capsuleRouter.post('/', authToken, (req, res) => {
     req.userId = String(req.user.userId);
 
     const capsuleDetails = req.body;
@@ -52,7 +69,7 @@ router.post('/', authToken, (req, res) => {
             req.userId,
             capsuleDetails.project_name,
             capsuleDetails.prompt_title,
-            capsuleDetails.prompt_version,
+            1,
             capsuleDetails.prompt_text,
             capsuleDetails.response_summary,
             capsuleDetails.category,
@@ -63,25 +80,25 @@ router.post('/', authToken, (req, res) => {
             capsuleDetails.notes,
             createdAt
         ],
-        (err) => {
+        function (err) {
             if (err) {
                 return res.status(500).json({ error: 'Internal server error' });
             }
             else {
-                return res.status(200).json({ id: this.lastID });
+                return res.status(201).json({ id: this.lastID });
             }
         }
     );
 });
 
-router.put('/:id', (req, res) => {
+capsuleRouter.put('/:id', authToken, (req, res) => {
     req.userId = String(req.user.userId);
 
     const { id } = req.params;
     const upd = req.body;
 
     db.get(
-        `SELECT * FROM capsules WHERE (userId = ? AND id = ?)`,
+        `SELECT * FROM capsules WHERE (user_id = ? AND id = ?)`,
         [req.userId, id],
         (err, existing) => {
             if (err) {
@@ -92,31 +109,41 @@ router.put('/:id', (req, res) => {
                 return res.status(404).json({ error: 'Capsule not found' });
             };
 
+            let ver = existing.prompt_version;
+
+            if (upd.prompt_text !== existing.prompt_text) {
+                ver = Number(existing.prompt_version || 1) + 1;
+            };
+
             db.run(
                 `UPDATE capsules
                 SET
-                    project_name,
-                    prompt_title,
-                    prompt_text,
-                    response_summary,
-                    category,
-                    usefulness,
-                    reviewed,
-                    improved,
-                    screenshot_url,
-                    notes
-                WHERE id = ?`,
+                    project_name = ?,
+                    prompt_title = ?,
+                    prompt_text = ?,
+                    prompt_version =?,
+                    response_summary = ?,
+                    category = ?,
+                    usefulness = ?,
+                    reviewed = ?,
+                    improved = ?,
+                    screenshot_url = ?,
+                    notes = ?
+                WHERE id = ? AND user_id = ?`,
                 [
                     upd.project_name,
                     upd.prompt_title,
                     upd.prompt_text,
+                    ver,
                     upd.response_summary,
                     upd.category,
                     upd.usefulness,
                     upd.reviewed,
                     upd.improved,
                     upd.screenshot_url,
-                    upd.notes
+                    upd.notes,
+                    id, 
+                    req.userId
                 ],
                 (err) => {
                     if (err) {
@@ -130,14 +157,14 @@ router.put('/:id', (req, res) => {
     )
 });
 
-router.delete('/:id', (req, res) => {
+capsuleRouter.delete('/:id', authToken, (req, res) => {
     req.userId = String(req.user.userId);
 
     const { id } = req.params;
 
     db.run(
         `DELETE FROM capsules
-        WHERE (userId = ? AND id = ?)`,
+        WHERE (user_id = ? AND id = ?)`,
         [req.userId, id],
         function (err) {
             if (err) {
@@ -154,4 +181,4 @@ router.delete('/:id', (req, res) => {
     );
 });
 
-module.exports = { router };
+module.exports = { capsuleRouter };

@@ -1,0 +1,541 @@
+
+/* =========================================
+   CAPSULE CARD
+========================================= */
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+
+    padding: 22px;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+
+    transition:
+        box-shadow 0.2s ease,
+        transform 0.2s ease;
+}
+
+.card-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
+}
+
+
+/* =========================================
+   CARD HEADER
+========================================= */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+}
+
+.capsule-info {
+    color: #9ca3af;
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+}
+
+.category {
+    padding: 5px 11px;
+
+    background: #f3f4f6;
+    color: #4b5563;
+
+    border-radius: 20px;
+
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   CARD BODY
+========================================= */
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.prompt-text {
+    color: #111827;
+
+    font-size: 1.2rem;
+    font-weight: 650;
+    line-height: 1.5;
+
+    overflow-wrap: anywhere;
+}
+
+
+/* =========================================
+   CARD FOOTER
+========================================= */
+
+.card-footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+
+    padding-top: 15px;
+    border-top: 1px solid #f0f1f3;
+}
+
+
+/* Status indicators */
+
+.useful,
+.reviewed,
+.improved {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 10px;
+    border-radius: 7px;
+
+    font-size: 0.77rem;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+
+/* Usefulness status */
+
+.useful.good {
+    background: #ecfdf3;
+    color: #15803d;
+}
+
+.useful.needs-improvement {
+    background: #fff7ed;
+    color: #c2410c;
+}
+
+.useful.not-reviewed {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+
+/* Review status */
+
+.reviewed,
+.improved {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+
+/* =========================================
+   CARD ACTION BUTTONS
+========================================= */
+
+.edit,
+.delete {
+    padding: 7px 13px;
+
+    border: 1px solid transparent;
+    border-radius: 7px;
+
+    font-size: 0.8rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.edit {
+    margin-left: auto;
+
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.edit:hover {
+    background: #dbeafe;
+}
+
+.delete {
+    background: #fff1f2;
+    color: #e11d48;
+}
+
+.delete:hover {
+    background: #ffe4e6;
+}
+
+
+/* =========================================
+   MODAL OVERLAY
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+
+/* =========================================
+   MODAL CONTAINER
+========================================= */
+
+.modal-container {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+
+    overflow: hidden;
+
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 13px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 18px 22px;
+
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.modal-header-text {
+    color: #111827;
+
+    font-size: 1.05rem;
+    font-weight: 650;
+}
+
+.close-container {
+    display: flex;
+    align-items: center;
+}
+
+.close-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 7px;
+
+    background: #f3f4f6;
+    color: #6b7280;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.close-button:hover {
+    background: #e5e7eb;
+}
+
+
+/* =========================================
+   MODAL CONTENT
+========================================= */
+
+.modal-content {
+    padding: 22px;
+    overflow-y: auto;
+}
+
+
+/* =========================================
+   EDIT FORM
+========================================= */
+
+.edit-form-container {
+    width: 100%;
+}
+
+.edit-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    min-width: 0;
+}
+
+.label {
+    color: #374151;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+
+/* Text inputs and dropdowns */
+
+.form-control {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 10px 12px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    outline: none;
+
+    background: #ffffff;
+    color: #111827;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: #9ca3af;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+
+/* Textareas */
+
+textarea.form-control {
+    min-height: 110px;
+    resize: vertical;
+    line-height: 1.5;
+}
+
+
+/* Dropdown */
+
+select.form-control {
+    cursor: pointer;
+}
+
+
+/* Checkboxes */
+
+.input-container input[type="checkbox"] {
+    width: 17px;
+    height: 17px;
+
+    accent-color: #2563eb;
+
+    cursor: pointer;
+}
+
+
+/* =========================================
+   SAVE BUTTON
+========================================= */
+
+.submit-container {
+    display: flex;
+    justify-content: flex-end;
+
+    padding-top: 5px;
+}
+
+.submit-button {
+    padding: 10px 21px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #2563eb;
+    color: #ffffff;
+
+    font-size: 0.88rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.submit-button:hover {
+    background: #1d4ed8;
+}
+
+
+/* =========================================
+   DELETE CONFIRMATION
+========================================= */
+
+.delete-message {
+    margin-bottom: 22px;
+
+    color: #374151;
+
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.delete-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.view-button {
+    padding: 9px 17px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #374151;
+
+    font-size: 0.85rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.view-button:hover {
+    background: #f3f4f6;
+}
+
+
+/* Confirm deletion */
+
+#delete-btn {
+    border-color: #e11d48;
+
+    background: #e11d48;
+    color: #ffffff;
+}
+
+#delete-btn:hover {
+    border-color: #be123c;
+    background: #be123c;
+}
+
+
+/* =========================================
+   ERROR ALERT SPACING
+========================================= */
+
+.modal-content > .MuiAlert-root {
+    margin-bottom: 18px;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 600px) {
+    .card-container {
+        padding: 17px;
+    }
+
+    .card-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .card-footer {
+        gap: 8px;
+    }
+
+    .edit {
+        margin-left: 0;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .modal-container {
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 15px 17px;
+    }
+
+    .modal-content {
+        padding: 17px;
+    }
+}
+
+@media (max-width: 380px) {
+    .card-footer {
+        align-items: stretch;
+    }
+
+    .edit,
+    .delete {
+        flex: 1;
+    }
+
+    .useful,
+    .reviewed,
+    .improved {
+        font-size: 0.72rem;
+    }
+}

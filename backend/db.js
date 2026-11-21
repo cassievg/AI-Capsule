@@ -10,7 +10,7 @@ const dbCreate = () => {
                 user_id TEXT NOT NULL,
                 project_name TEXT NOT NULL,
                 prompt_title TEXT NOT NULL,
-                prompt_version TEXT,
+                prompt_version INTEGER DEFAULT 1,
                 prompt_text TEXT NOT NULL,
                 response_summary TEXT,
                 category TEXT,
