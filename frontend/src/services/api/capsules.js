@@ -1,6 +1,6 @@
 import instance from "../../libs/request";
 
-const getCpsl = async () => {
+const getCpsls = async () => {
     const res = await instance.get('/capsules');
     return res.data;
 };
@@ -20,9 +20,9 @@ const editCpsl = async (cpsl) => {
     return res.data;
 };
 
-const delCpsl = async (cpsl) => {
-    const res = await instance.delete(`/capsules/${cpsl.id}`);
+const delCpsl = async (id) => {
+    const res = await instance.delete(`/capsules/${id}`);
     return res.data;
 };
 
-export { getCpsl, getCpslById, addCpsl, editCpsl, delCpsl };
+export { getCpsls, getCpslById, addCpsl, editCpsl, delCpsl };

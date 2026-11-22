@@ -1,0 +1,136 @@
+
+/* ==============================
+   LOGIN PAGE
+============================== */
+
+.login-page {
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px 20px;
+    box-sizing: border-box;
+
+    background:
+        radial-gradient(circle at top left, #e0ecff 0, transparent 38%),
+        #f8fafc;
+
+    font-family: Arial, sans-serif;
+}
+
+/* ==============================
+   LOGIN PANEL
+============================== */
+
+.login-page .container {
+    width: 100%;
+    max-width: 460px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 48px 42px;
+
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+
+    box-shadow: 0 15px 45px rgba(15, 23, 42, 0.08);
+
+    text-align: center;
+}
+
+/* ==============================
+   TEXT
+============================== */
+
+.login-page .title {
+    margin-bottom: 12px;
+
+    color: #172033;
+    font-size: 28px;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+}
+
+.login-page .sub-title {
+    margin-bottom: 22px;
+
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.login-page .text {
+    margin-bottom: 30px;
+
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ==============================
+   LOGIN BUTTON
+============================== */
+
+.login-page .login {
+    width: 100%;
+    padding: 13px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #24292f;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+    transition: background-color 0.2s ease,
+                transform 0.2s ease;
+}
+
+.login-page .login:hover {
+    background-color: #3b424a;
+    transform: translateY(-1px);
+}
+
+.login-page .login:active {
+    transform: translateY(0);
+}
+
+/* ==============================
+   AUTH LOADING
+============================== */
+
+.loading-user {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 480px) {
+    .login-page .container {
+        padding: 38px 25px;
+    }
+
+    .login-page .title {
+        font-size: 24px;
+    }
+}

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 
-import "./projectCard.css";
+import Alert from '@mui/material/Alert';
+
+import "./CapsuleCard.css";
 import { delCpsl, editCpsl } from "../services/api/capsules";
 
-const Capsule = (props) => {
+const CapsuleCard = (props) => {
     const {
         capsule,
         onUpdated
@@ -95,19 +97,33 @@ const Capsule = (props) => {
                 <div className="card-body">
                     <div className="prompt-text">{capsule.project_name}</div>
                 </div>
-                <div className="card-footer">
-                    <div className={`useful ${ 
+
+                <div className="card-status">
+                    <div className={`useful ${
                         capsule.usefulness === 'Good' ? 'good' :
                         capsule.usefulness === 'Needs Improvement' ? 'needs-improvement' :
                         'not-reviewed'
                     }`}>
                         {capsule.usefulness}
                     </div>
-                    <div className="reviewed">Reviewed: {capsule.reviewed ? 'Yes' : 'No'}</div>
-                    <div className="improved">Improved: {capsule.improved ? 'Yes' : 'No'}</div>
 
-                    <button className="edit" onClick={openEdit}>Edit</button>
-                    <button className="delete" onClick={openDel}>Delete</button>
+                    <div className="reviewed">
+                        Reviewed: {capsule.reviewed ? 'Yes' : 'No'}
+                    </div>
+
+                    <div className="improved">
+                        Improved: {capsule.improved ? 'Yes' : 'No'}
+                    </div>
+                </div>
+
+                <div className="card-footer">
+                    <button className="edit" onClick={openEdit}>
+                        Edit
+                    </button>
+
+                    <button className="delete" onClick={openDel}>
+                        Delete
+                    </button>
                 </div>
             </div>
 
@@ -128,7 +144,7 @@ const Capsule = (props) => {
                                 <div className='edit-form'>
 
                                     <div className='input-container'>
-                                        <div className='label'>Project Name: {editItem.project_name}</div>
+                                        <div className='label'>Project Name:</div>
                                         <input
                                             className='form-control'
                                             type='text'
@@ -141,7 +157,7 @@ const Capsule = (props) => {
                                     </div>
 
                                     <div className='input-container'>
-                                        <div className='label'>Prompt Title: {editItem.prompt_title}</div>
+                                        <div className='label'>Prompt Title:</div>
                                         <input
                                             className='form-control'
                                             type='text'
@@ -154,7 +170,7 @@ const Capsule = (props) => {
                                     </div>
 
                                     <div className='input-container'>
-                                        <div className='label'>Prompt Text: {editItem.prompt_text}</div>
+                                        <div className='label'>Prompt Text:</div>
                                         <textarea
                                             className='form-control'
                                             type='text'
@@ -167,7 +183,7 @@ const Capsule = (props) => {
                                     </div>       
 
                                     <div className='input-container'>
-                                        <div className='label'>Response Summary: {editItem.response_summary}</div>
+                                        <div className='label'>Response Summary:</div>
                                         <textarea
                                             className='form-control'
                                             type='text'
@@ -180,7 +196,7 @@ const Capsule = (props) => {
                                     </div>   
 
                                     <div className='input-container'>
-                                        <div className='label'>Category: {editItem.category}</div>
+                                        <div className='label'>Category:</div>
                                         <input
                                             className='form-control'
                                             type='text'
@@ -193,7 +209,7 @@ const Capsule = (props) => {
                                     </div>   
 
                                     <div className='input-container'>
-                                        <div className='label'>Usefulness: {editItem.usefulness}</div>
+                                        <div className='label'>Usefulness:</div>
                                         <select
                                             className='form-control'
                                             id='usefulness'
@@ -207,7 +223,7 @@ const Capsule = (props) => {
                                     </div>           
 
                                     <div className='input-container'>
-                                        <div className='label'>Reviewed: {editItem.reviewed}</div>
+                                        <div className='label'>Reviewed:</div>
                                         <input
                                             type="checkbox"
                                             id="reviewed"
@@ -217,7 +233,7 @@ const Capsule = (props) => {
                                     </div>            
 
                                     <div className='input-container'>
-                                        <div className='label'>Improved: {editItem.improved}</div>
+                                        <div className='label'>Improved:</div>
                                         <input
                                             type="checkbox"
                                             id="improved"
@@ -227,7 +243,7 @@ const Capsule = (props) => {
                                     </div>         
 
                                     <div className='input-container'>
-                                        <div className='label'>Screenshot: {editItem.screenshot_url}</div>
+                                        <div className='label'>Screenshot:</div>
                                         <input
                                             className='form-control'
                                             type='text'
@@ -240,7 +256,7 @@ const Capsule = (props) => {
                                     </div>    
 
                                     <div className='input-container'>
-                                        <div className='label'>Notes: {editItem.notes}</div>
+                                        <div className='label'>Notes:</div>
                                         <textarea
                                             className='form-control'
                                             type='text'
@@ -295,4 +311,4 @@ const Capsule = (props) => {
     );
 };
 
-export default Capsule;
+export default CapsuleCard;

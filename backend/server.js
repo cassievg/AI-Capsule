@@ -11,7 +11,10 @@ const { authRouter } = require('./routes/auth');
 const app = express();
 
 app.use(cors({
-    origin: 'https://ai-capsule-w0vs.onrender.com',
+    origin: [
+        'http://localhost:5173',
+        'https://ai-capsule-w0vs.onrender.com'
+    ],
     credentials: true
 }));
 app.use(express.json());

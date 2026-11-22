@@ -1,0 +1,356 @@
+
+/* ==============================
+   DASHBOARD
+============================== */
+
+.parent-container {
+    width: 100%;
+    min-height: 100vh;
+    box-sizing: border-box;
+
+    padding: 45px 6%;
+
+    background-color: #f8fafc;
+    color: #1e293b;
+
+    font-family: Arial, sans-serif;
+}
+
+/* ==============================
+   DASHBOARD HEADER
+============================== */
+
+.parent-container > .title {
+    margin-bottom: 8px;
+
+    color: #172033;
+    font-size: 30px;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+}
+
+.user-intro {
+    margin-bottom: 32px;
+
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ==============================
+   CREATE BUTTON
+============================== */
+
+.create-container {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-bottom: 25px;
+}
+
+.create-btn {
+    min-width: 165px;
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    background-color: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 650;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.create-btn::after {
+    content: " Create Capsule";
+}
+
+.create-btn:hover {
+    background-color: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.create-btn:active {
+    transform: translateY(0);
+}
+
+/* ==============================
+   CAPSULE GRID
+============================== */
+
+.empty-parent {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    align-items: start;
+    gap: 24px;
+}
+
+/* ==============================
+   EMPTY STATE
+============================== */
+
+.empty {
+    grid-column: 1 / -1;
+
+    margin-top: 75px;
+
+    color: #334155;
+    font-size: 21px;
+    font-weight: 650;
+    text-align: center;
+}
+
+.empty-desc {
+    grid-column: 1 / -1;
+
+    margin-top: -12px;
+
+    color: #94a3b8;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ==============================
+   LOADING
+============================== */
+
+.loading-data {
+    padding: 15px;
+
+    color: #64748b;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* ==============================
+   MATERIAL UI ALERT
+============================== */
+
+.MuiAlert-root {
+    margin: 16px 6%;
+    border-radius: 8px !important;
+}
+
+/* ==============================
+   MODAL OVERLAY
+============================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    box-sizing: border-box;
+
+    background-color: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(3px);
+}
+
+/* ==============================
+   MODAL CONTAINER
+============================== */
+
+.modal-container {
+    width: 100%;
+    max-width: 650px;
+    max-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow: hidden;
+
+    background-color: #ffffff;
+    border-radius: 12px;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+}
+
+/* ==============================
+   MODAL HEADER
+============================== */
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 20px 25px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header-text {
+    color: #1e293b;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.close-container {
+    display: flex;
+    align-items: center;
+}
+
+.close-button {
+    width: 32px;
+    height: 32px;
+
+    border: none;
+    border-radius: 6px;
+
+    background-color: #f1f5f9;
+    color: #64748b;
+
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.close-button:hover {
+    background-color: #fee2e2;
+    color: #dc2626;
+}
+
+/* ==============================
+   MODAL CONTENT
+============================== */
+
+.modal-content {
+    padding: 25px;
+    overflow-y: auto;
+}
+
+/* ==============================
+   CREATE FORM
+============================== */
+
+.create-form-container {
+    width: 100%;
+}
+
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.label {
+    color: #475569;
+    font-size: 13px;
+    font-weight: 650;
+}
+
+/* ==============================
+   FORM CONTROLS
+============================== */
+
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 11px 12px;
+
+    border: 1px solid #cbd5e1;
+    border-radius: 7px;
+
+    background-color: #ffffff;
+    color: #1e293b;
+
+    font-family: inherit;
+    font-size: 14px;
+
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-control:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12);
+}
+
+textarea.form-control {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* ==============================
+   SUBMIT BUTTON
+============================== */
+
+.submit-container {
+    display: flex;
+    justify-content: flex-end;
+
+    margin-top: 5px;
+}
+
+.submit-button {
+    min-width: 110px;
+    padding: 11px 20px;
+
+    border: none;
+    border-radius: 7px;
+
+    background-color: #2563eb;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.submit-button:hover {
+    background-color: #1d4ed8;
+}
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 1100px) {
+    .empty-parent {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 650px) {
+    .parent-container {
+        padding: 30px 20px;
+    }
+
+    .parent-container > .title {
+        font-size: 25px;
+    }
+
+    .empty-parent {
+        grid-template-columns: 1fr;
+    }
+
+    .create-btn {
+        width: 100%;
+    }
+
+    .modal-content {
+        padding: 20px;
+    }
+
+    .MuiAlert-root {
+        margin: 12px 20px;
+    }
+}
