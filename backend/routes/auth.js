@@ -117,10 +117,10 @@ authRouter.get('/github/callback', async (req, res) => {
 
         res.cookie('token', appToken, {
             httpOnly: true,
-            secure: process.env.NODE_ENV === 'production',
-            sameSite: 'lax',
+            secure: true,
+            sameSite: 'none',
             maxAge: 60 * 60 * 1000,
-            path: '/'
+            path: '/',
         });
 
         res.redirect(`${process.env.FRONTEND_URL}/dashboard`);
