@@ -2,7 +2,7 @@ import instance from "../../libs/request";
 
 //temp
 const login = async () => {
-    window.location.href = 'http://localhost:5000/api/auth/github';
+    window.location.href = 'https://ai-capsule-backend.onrender.com/api/auth/github';
 };
 
 const getUser = async () => {
