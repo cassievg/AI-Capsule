@@ -13,7 +13,7 @@ const app = express();
 app.use(cors({
     origin: [
         'http://localhost:5173',
-        'https://ai-capsule-w0vs.onrender.com'
+        'https://ai-capsule-frontend-uopt.onrender.com/'
     ],
     credentials: true
 }));
