@@ -326,7 +326,7 @@ const CapsuleCard = (props) => {
                             <div className='modal-header'>
                                 <div className='modal-header-text'>Capsule #{capsule.id}</div>
                                 <div className='close-container'>
-                                    <button type='button' className='close-button' onClick={closeEdit}>X</button>
+                                    <button type='button' className='close-button' onClick={closeView}>X</button>
                                 </div>
                             </div>
                             <div className='modal-content'>
