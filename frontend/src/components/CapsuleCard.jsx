@@ -97,6 +97,16 @@ const CapsuleCard = (props) => {
         setViewMod(false);
     };
 
+    const handleEditClick = async (event) => {
+        event.stopPropagation();
+        openEdit();
+    };
+
+    const handleDeleteClick = async (event) => {
+        event.stopPropagation();
+        openDel();
+    };
+
     return (
         <>
             <div
@@ -130,11 +140,11 @@ const CapsuleCard = (props) => {
                 </div>
 
                 <div className="card-footer">
-                    <button className="edit" onClick={openEdit}>
+                    <button className="edit" onClick={handleEditClick}>
                         Edit
                     </button>
 
-                    <button className="delete" onClick={openDel}>
+                    <button className="delete" onClick={handleDeleteClick}>
                         Delete
                     </button>
                 </div>
