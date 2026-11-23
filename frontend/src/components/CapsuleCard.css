@@ -539,3 +539,53 @@ select.form-control {
         font-size: 0.72rem;
     }
 }
+
+/* =========================================
+   VIEW MODAL
+========================================= */
+
+.card-container {
+    cursor: pointer;
+}
+
+.card-container:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.4);
+    outline-offset: 3px;
+}
+
+.view-details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.view-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.view-value {
+    padding: 11px 13px;
+
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+
+    color: #374151;
+    font-size: 0.9rem;
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.view-value a {
+    color: #2563eb;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.view-value a:hover {
+    text-decoration: underline;
+}

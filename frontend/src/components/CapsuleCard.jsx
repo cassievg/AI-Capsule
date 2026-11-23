@@ -16,6 +16,8 @@ const CapsuleCard = (props) => {
 
     const [del, setDel] = useState(false);
 
+    const [viewMod, setViewMod] = useState(false);
+
     const [errMsg, setErrMsg] = useState('');
 
     const openEdit = () => {
@@ -87,9 +89,20 @@ const CapsuleCard = (props) => {
 		}
     };
 
+    const openView = async () => {
+        setViewMod(true);
+    };
+
+    const closeView = async () => {
+        setViewMod(false);
+    };
+
     return (
         <>
-            <div className="card-container">
+            <div
+                className="card-container"
+                onClick={openView}
+            >
                 <div className="card-header">
                     <div className="capsule-info">{capsule.created_at} - v{capsule.prompt_version}</div>
                     <div className="category">{capsule.category}</div>
@@ -302,6 +315,77 @@ const CapsuleCard = (props) => {
                                     <button className='view-button' id='delete-btn' onClick={reqDel}>
                                         Delete
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                {viewMod &&
+                    <div className='modal-overlay'>
+                        <div className='modal-container'>
+                            <div className='modal-header'>
+                                <div className='modal-header-text'>Capsule #{capsule.id}</div>
+                                <div className='close-container'>
+                                    <button type='button' className='close-button' onClick={closeEdit}>X</button>
+                                </div>
+                            </div>
+                            <div className='modal-content'>
+                                {errMsg &&
+                                    <Alert severity='error'>{errMsg}</Alert>
+                                }
+                                <div className='edit-form-container'>
+                                    <div className='edit-form'>
+
+                                        <div className='data-container'>
+                                            <div className='label'>Project Name:</div>
+                                            <div className='data'>{capsule.project_name}</div>
+                                        </div>
+
+                                        <div className='data-container'>
+                                            <div className='label'>Prompt Title:</div>
+                                            <div className='data'>{capsule.prompt_title}</div>
+                                        </div>
+
+                                        <div className='data-container'>
+                                            <div className='label'>Prompt Text:</div>
+                                            <div className='data'>{capsule.prompt_text}</div>
+                                        </div>       
+
+                                        <div className='data-container'>
+                                            <div className='label'>Response Summary:</div>
+                                            <div className='data'>{capsule.response_summary}</div>
+                                        </div>   
+
+                                        <div className='data-container'>
+                                            <div className='label'>Category:</div>
+                                            <div className='data'>{capsule.category}</div>
+                                        </div>   
+
+                                        <div className='data-container'>
+                                            <div className='label'>Usefulness:</div>
+                                            <div className='data'>{capsule.usefulness}</div>
+                                        </div>           
+
+                                        <div className='data-container'>
+                                            <div className='label'>Reviewed:</div>
+                                            <div className='data'>{capsule.reviewed ? 'Yes' : 'No'}</div>
+                                        </div>            
+
+                                        <div className='data-container'>
+                                            <div className='label'>Improved:</div>
+                                            <div className='data'>{capsule.improved ? 'Yes' : 'No'}</div>
+                                        </div>         
+
+                                        <div className='data-container'>
+                                            <div className='label'>Screenshot:</div>
+                                            <div className='data'>{capsule.screenshot_url}</div>
+                                        </div>    
+
+                                        <div className='data-container'>
+                                            <div className='label'>Notes:</div>
+                                            <div className='data'>{capsule.notes}</div>
+                                        </div>    
+                                    </div>
                                 </div>
                             </div>
                         </div>
